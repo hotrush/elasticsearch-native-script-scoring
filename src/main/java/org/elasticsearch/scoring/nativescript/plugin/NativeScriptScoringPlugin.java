@@ -1,6 +1,6 @@
 package org.elasticsearch.scoring.nativescript.plugin;
 
-import org.elasticsearch.scoring.nativescript.script.FilterIntersectScoreScript;
+import org.elasticsearch.scoring.nativescript.script.IntersectMultipleScript;
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
 

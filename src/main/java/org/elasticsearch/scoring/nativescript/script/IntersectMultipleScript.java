@@ -19,7 +19,7 @@ public class IntersectMultipleScript extends AbstractSearchScript {
     int multiple = 0;
     String field = null;
     ArrayList<String> items = null;
-    ArrayList<String> source_item = null;
+    ArrayList<String> source_items = null;
 
     final static public String SCRIPT_NAME = "multiple_terms_script_score";
 
@@ -30,7 +30,7 @@ public class IntersectMultipleScript extends AbstractSearchScript {
         }
     }
 
-    private PhraseScoreScript(Map<String, Object> params) {
+    private IntersectMultipleScript(Map<String, Object> params) {
         params.entrySet();
         // get the items
         items = (ArrayList<String>) params.get("items");

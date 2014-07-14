@@ -3,7 +3,7 @@ work/
 data/
 logs/
 build/
-target/
+#target/
 .DS_Store
 
 # IDEA ignores
