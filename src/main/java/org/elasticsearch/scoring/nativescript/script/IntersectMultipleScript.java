@@ -15,10 +15,10 @@ import org.elasticsearch.script.NativeScriptFactory;
 
 public class IntersectMultipleScript extends AbstractSearchScript {
 
-    int limit = 1;
-    int multiple = 0;
-    String field = null;
-    ArrayList<String> items = null;
+    int limit;
+    int multiple;
+    String field;
+    ArrayList<String> items;
 //    ArrayList<String> source_items = null;
 
     final static public String SCRIPT_NAME = "multiple_terms_script_score";
