@@ -19,7 +19,7 @@ public class IntersectMultipleScript extends AbstractSearchScript {
     int multiple;
     String field;
     ArrayList<String> items;
-//    ArrayList<String> source_items = null;
+    ArrayList<String> source_items;
 
     final static public String SCRIPT_NAME = "multiple_terms_script_score";
 
