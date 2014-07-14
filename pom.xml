@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-native-script-scoring</artifactId>
-    <version>v1.0</version>
+    <version>1.0</version>
     <packaging>zip</packaging>
     <description>ElasticSearch Plugin for advanced filter scores for dealroom.co</description>
     <inceptionYear>2014</inceptionYear>
