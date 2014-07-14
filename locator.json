@@ -1,5 +1,0 @@
-{
-    "versions" : [
-        {"version": "1.0", "from": "1.0.0", "to": "1.2.1", "location":"https://github.com/hotrush/elasticsearch-native-script-scoring/archive/1.0.zip" }
-    ]
-}

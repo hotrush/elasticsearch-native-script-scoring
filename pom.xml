@@ -6,27 +6,10 @@
     <!-- Standard project header. Change the project name, groupId,    -->
     <!-- artifactId and description to match your project.             -->
     <!-- ============================================================= -->
-    <name>elasticsearch-native-script-scoring</name>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-native-script-scoring</artifactId>
-    <version>1.0</version>
-    <packaging>zip</packaging>
-    <description>ElasticSearch Plugin for advanced filter scores for dealroom.co</description>
-    <inceptionYear>2014</inceptionYear>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <scm>
-        <connection>scm:git:git@github.com:hotrush/elasticsearch-native-script-scoring.git</connection>
-        <developerConnection>scm:git:git@github.com:hotrush/elasticsearch-native-script-scoring.git</developerConnection>
-        <url>http://github.com/hotrush/elasticsearch-native-script-scoring</url>
-    </scm>
-
+    <version>1.0.1</version>
 
     <!-- ============================================================= -->
     <!-- The Elasticsearch version that the project will be built with -->
