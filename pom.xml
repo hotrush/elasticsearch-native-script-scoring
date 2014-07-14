@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-native-script-scoring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>v1.0</version>
     <packaging>zip</packaging>
     <description>ElasticSearch Plugin for advanced filter scores for dealroom.co</description>
     <inceptionYear>2014</inceptionYear>
@@ -26,12 +26,6 @@
         <developerConnection>scm:git:git@github.com:hotrush/elasticsearch-native-script-scoring.git</developerConnection>
         <url>http://github.com/hotrush/elasticsearch-native-script-scoring</url>
     </scm>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
 
 
     <!-- ============================================================= -->
