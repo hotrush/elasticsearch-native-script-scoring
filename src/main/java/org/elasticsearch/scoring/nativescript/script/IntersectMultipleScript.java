@@ -31,9 +31,9 @@ public class IntersectMultipleScript extends AbstractSearchScript {
     }
 
     private IntersectMultipleScript(Map<String, Object> params) {
-//        params.entrySet();
-//        // get the items
-//        items = (ArrayList<String>) params.get("items");
+        params.entrySet();
+        // get the items
+        items = (ArrayList<String>) params.get("items");
 //        // field name
 //        field = (String) params.get("field");
 //        // get doc items
