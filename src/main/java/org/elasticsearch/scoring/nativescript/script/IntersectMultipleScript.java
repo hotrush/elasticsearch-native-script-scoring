@@ -37,7 +37,9 @@ public class IntersectMultipleScript extends AbstractSearchScript {
         // field name
         field = (String) params.get("field");
         // get doc items
-        source_items = (ArrayList<String>) doc().get(field);
+        if (field != null) {
+            source_items = (ArrayList<String>) doc().get(field);
+        }
         // get the field
         limit = (int) params.get("limit");
         multiple = (int) params.get("multiple");
