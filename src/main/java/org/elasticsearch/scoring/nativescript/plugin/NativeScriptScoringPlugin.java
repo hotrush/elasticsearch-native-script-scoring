@@ -35,6 +35,6 @@ public class NativeScriptScoringPlugin extends AbstractPlugin {
 
     public void onModule(ScriptModule module) {
         // Register each script that we defined in this plugin
-        module.registerScript("intersect_multiple", IntersectMultipleScript.Factory.class);
+        module.registerScript(IntersectMultipleScript.SCRIPT_NAME, IntersectMultipleScript.Factory.class);
     }
 }
