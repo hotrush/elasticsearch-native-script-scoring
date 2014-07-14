@@ -50,6 +50,7 @@ public class IntersectMultipleScript extends AbstractSearchScript {
 
     @Override
     public Object run() {
+        source_items = (ArrayList<String>) doc().get(field);
 //        source_items.retainAll(items);
 //        int intersections_num = source_items.size();
 //        if (intersections_num > 0) {
