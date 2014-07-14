@@ -20,7 +20,7 @@ public class NativeScriptScoringPlugin extends AbstractPlugin {
      */
     @Override
     public String name() {
-        return "elasticsearch-native-script-scoring";
+        return "native-script-scoring";
     }
 
     /**
