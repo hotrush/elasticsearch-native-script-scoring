@@ -31,35 +31,35 @@ public class IntersectMultipleScript extends AbstractSearchScript {
     }
 
     private IntersectMultipleScript(Map<String, Object> params) {
-        params.entrySet();
-        // get the items
-        items = (ArrayList<String>) params.get("items");
-        // field name
-        field = (String) params.get("field");
-        // get doc items
-        if (field != null) {
-            source_items = (ArrayList<String>) doc().get(field);
-        }
-        // get the field
-        limit = (int) params.get("limit");
-        multiple = (int) params.get("multiple");
-        if (field == null || items == null || source_items == null) {
-            throw new ScriptException("cannot initialize " + SCRIPT_NAME + ": field, items, or source parameter missing!");
-        }
+//        params.entrySet();
+//        // get the items
+//        items = (ArrayList<String>) params.get("items");
+//        // field name
+//        field = (String) params.get("field");
+//        // get doc items
+//        if (field != null) {
+//            source_items = (ArrayList<String>) doc().get(field);
+//        }
+//        // get the field
+//        limit = (int) params.get("limit");
+//        multiple = (int) params.get("multiple");
+//        if (field == null || items == null || source_items == null) {
+//            throw new ScriptException("cannot initialize " + SCRIPT_NAME + ": field, items, or source parameter missing!");
+//        }
     }
 
     @Override
     public Object run() {
-        source_items.retainAll(items);
-        int intersections_num = source_items.size();
-        if (intersections_num > 0) {
-            if (intersections_num >= limit) {
-                return score() + limit*multiple;
-            } else {
-                return score() + intersections_num*multiple;
-            }
-        }
-        return score();
+//        source_items.retainAll(items);
+//        int intersections_num = source_items.size();
+//        if (intersections_num > 0) {
+//            if (intersections_num >= limit) {
+//                return score() + limit*multiple;
+//            } else {
+//                return score() + intersections_num*multiple;
+//            }
+//        }
+        return score() + 100;
     }
 
 }
