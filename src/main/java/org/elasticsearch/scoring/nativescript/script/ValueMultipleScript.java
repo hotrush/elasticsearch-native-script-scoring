@@ -55,7 +55,8 @@ public class ValueMultipleScript extends AbstractSearchScript {
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
             for (HashMap<String, Integer> value_multiple : value_multiples) {
-                if (value_multiple.get("value") == fieldValue.getValue()) {
+                //if (value_multiple.get("value") == fieldValue.getValue()) {
+                if (value_multiple.get("value") == 2) {
                     //return score()*value_multiple.get("multiple");
                     return score()*1000;
                 }
