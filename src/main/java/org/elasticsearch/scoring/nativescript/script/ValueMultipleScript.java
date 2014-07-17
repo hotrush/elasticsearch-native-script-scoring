@@ -56,13 +56,13 @@ public class ValueMultipleScript extends AbstractSearchScript {
             //ScriptDocValues.Doubles fieldValue = (ScriptDocValues.Doubles) source_doc_value;
             Long fieldValue = ((ScriptDocValues.Longs) source_doc_value).getValue();
 
-//            for (HashMap<String, Long> value_multiple : value_multiples) {
-//                if (value_multiple.get("value") == fieldValue.getValue()) {
-//                //if (value_multiple.get("value") == 2) {
-//                    //return score()*value_multiple.get("multiple");
-//                    return score()*1000;
-//                }
-//            }
+            for (HashMap<String, Long> value_multiple : value_multiples) {
+                if (value_multiple.get("value") == fieldValue) {
+                //if (value_multiple.get("value") == 2) {
+                    //return score()*value_multiple.get("multiple");
+                    return score()*1000;
+                }
+            }
         }
         return score();
     }
