@@ -10,6 +10,7 @@ import org.elasticsearch.script.ScriptException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.xcontent.support.XContentMapValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
+import org.elasticsearch.index.fielddata.ScriptDocValues.Longs;
 import org.elasticsearch.script.AbstractSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
@@ -17,7 +18,7 @@ import org.elasticsearch.script.NativeScriptFactory;
 public class ValueMultipleScript extends AbstractSearchScript {
 
     String field;
-    ArrayList<HashMap<String, Double>> value_multiples;
+    ArrayList<HashMap<String, Long>> value_multiples;
     int fieldValue;
 
     final static public String SCRIPT_NAME = "value_multiple_script_score";
@@ -32,7 +33,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
     private ValueMultipleScript(Map<String, Object> params) {
         params.entrySet();
         // get the items
-        value_multiples = (ArrayList<HashMap<String, Double>>) params.get("value_multiples");
+        value_multiples = (ArrayList<HashMap<String, Long>>) params.get("value_multiples");
         // field name
         field = (String) params.get("field");
         if (field == null || value_multiples == null) {
@@ -55,7 +56,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
             //ScriptDocValues.Doubles fieldValue = (ScriptDocValues.Doubles) source_doc_value;
             Long fieldValue = ((ScriptDocValues.Longs) source_doc_value).getValue();
 
-//            for (HashMap<String, Double> value_multiple : value_multiples) {
+//            for (HashMap<String, Long> value_multiple : value_multiples) {
 //                if (value_multiple.get("value") == fieldValue.getValue()) {
 //                //if (value_multiple.get("value") == 2) {
 //                    //return score()*value_multiple.get("multiple");
