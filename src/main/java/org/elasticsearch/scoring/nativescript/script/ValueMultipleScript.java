@@ -53,7 +53,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
 
             //Float fieldValue = ((ScriptDocValues) source_doc_value).getValue();
             //ScriptDocValues.Doubles fieldValue = (ScriptDocValues.Doubles) source_doc_value;
-            Double fieldValue = ((ScriptDocValues.Doubles) source_doc_value).getValue();
+            Long fieldValue = ((ScriptDocValues.Longs) source_doc_value).getValue();
 
 //            for (HashMap<String, Double> value_multiple : value_multiples) {
 //                if (value_multiple.get("value") == fieldValue.getValue()) {
