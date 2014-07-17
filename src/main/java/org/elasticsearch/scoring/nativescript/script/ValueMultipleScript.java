@@ -50,7 +50,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
             for (int i = 0; i < value_multiples.size(); i++) {
-                if(value_multiples.get(i).get("value") == fieldValue.getValue()) {
+                if(value_multiples.get(i).get("value").equals(fieldValue.getValue())) {
                     return score() * value_multiples.get(i).get("multiple");
                 }
             }
