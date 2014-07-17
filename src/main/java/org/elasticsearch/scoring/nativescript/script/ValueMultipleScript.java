@@ -52,7 +52,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
             for (int i = 0; i < value_multiples.size(); i++) {
                 Long val = Long.valueOf(value_multiples.get(i).get("value").longValue());
                 if(val.equals(fieldValue.getValue())) {
-                    return score() * value_multiples.get(i).get("multiple");
+                    //return score() * value_multiples.get(i).get("multiple");
                 }
             }
 
