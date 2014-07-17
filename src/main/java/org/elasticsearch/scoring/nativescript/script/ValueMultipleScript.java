@@ -47,32 +47,15 @@ public class ValueMultipleScript extends AbstractSearchScript {
         ScriptDocValues source_doc_value = (ScriptDocValues) doc().get(field);
         if (source_doc_value != null && !source_doc_value.isEmpty()) {
 
-            //for(Iterator<String> i = someList.iterator(); i.hasNext(); ) {
-            //    String item = i.next();
-            //    System.out.println(item);
-            //}
-
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
             if (fieldValue.getValue() == 2) {
-                return score()*1000;
+                return score()*1.5;
             }
             if (fieldValue.getValue() == 3) {
-                return score()*2000;
+                return score()*2;
             }
             return score();
 
-//            //ScriptDocValues.Doubles fieldValue = (ScriptDocValues.Doubles) source_doc_value;
-//            Long fieldValue = ((ScriptDocValues.Longs) source_doc_value).getValue();
-//            if (fieldValue != null){
-//                return fieldValue*1000;
-//            }
-//            for (HashMap<String, Long> value_multiple : value_multiples) {
-//                if ((Long) value_multiple.get("value") == fieldValue) {
-//                //if (value_multiple.get("value") == 2) {
-//                    //return score()*value_multiple.get("multiple");
-//                    return score()*1000;
-//                }
-//            }
         }
         return score();
     }
