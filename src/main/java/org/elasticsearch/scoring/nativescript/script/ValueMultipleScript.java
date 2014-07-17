@@ -48,13 +48,19 @@ public class ValueMultipleScript extends AbstractSearchScript {
         if (source_doc_value != null && !source_doc_value.isEmpty()) {
 
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
-            if (fieldValue.getValue() == 2) {
-                return score()*1.5;
+
+            for (int i = 0; i < value_multiples.size(); i++) {
+                if(value_multiples.get(i).get("value") == fieldValue.getValue()) {
+                    return score() * value_multiples.get(i).get("multiple");
+                }
             }
-            if (fieldValue.getValue() == 3) {
-                return score()*2;
-            }
-            return score();
+
+//            if (fieldValue.getValue() == 2) {
+//                return score()*1.5;
+//            }
+//            if (fieldValue.getValue() == 3) {
+//                return score()*2;
+//            }
 
         }
         return score();
