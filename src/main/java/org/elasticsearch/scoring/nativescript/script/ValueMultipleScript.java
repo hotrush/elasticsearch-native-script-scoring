@@ -17,7 +17,7 @@ import org.elasticsearch.script.NativeScriptFactory;
 public class ValueMultipleScript extends AbstractSearchScript {
 
     String field;
-    ArrayList<HashMap<String, Float>> value_multiples;
+    ArrayList<HashMap<String, Integer>> value_multiples;
     int fieldValue;
 
     final static public String SCRIPT_NAME = "value_multiple_script_score";
@@ -32,7 +32,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
     private ValueMultipleScript(Map<String, Object> params) {
         params.entrySet();
         // get the items
-        value_multiples = (ArrayList<HashMap<String, Float>>) params.get("value_multiples");
+        value_multiples = (ArrayList<HashMap<String, Integer>>) params.get("value_multiples");
         // field name
         field = (String) params.get("field");
         if (field == null || value_multiples == null) {
@@ -54,7 +54,7 @@ public class ValueMultipleScript extends AbstractSearchScript {
             //Float fieldValue = ((ScriptDocValues) source_doc_value).getValue();
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
-            for (HashMap<String, Float> value_multiple : value_multiples) {
+            for (HashMap<String, Integer> value_multiple : value_multiples) {
                 if (value_multiple.get("value") == fieldValue.getValue()) {
                     return score()*value_multiple.get("multiple");
                 }
