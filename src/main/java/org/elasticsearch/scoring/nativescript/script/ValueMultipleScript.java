@@ -32,11 +32,9 @@ public class ValueMultipleScript extends AbstractSearchScript {
 
     private ValueMultipleScript(Map<String, Object> params) {
         params.entrySet();
-        // get the items
-        value_multiples = (ArrayList<HashMap<String, Long>>) params.get("value_multiples");
         // field name
         field = (String) params.get("field");
-        if (field == null || value_multiples == null) {
+        if (field == null) {
             throw new ScriptException("cannot initialize " + SCRIPT_NAME + ": field or value_multiples parameter missing!");
         }
     }
@@ -49,19 +47,12 @@ public class ValueMultipleScript extends AbstractSearchScript {
 
             ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
-            for (int i = 0; i < value_multiples.size(); i++) {
-                Long val = Long.valueOf(value_multiples.get(i).get("value").longValue());
-                if(val.equals(fieldValue.getValue())) {
-                    //return score() * value_multiples.get(i).get("multiple");
-                }
+            if (fieldValue.getValue() == 2) {
+                return score()*1.5;
             }
-
-//            if (fieldValue.getValue() == 2) {
-//                return score()*1.5;
-//            }
-//            if (fieldValue.getValue() == 3) {
-//                return score()*2;
-//            }
+            if (fieldValue.getValue() == 3) {
+                return score()*2;
+            }
 
         }
         return score();
