@@ -37,8 +37,8 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
             this.multiple = multiple;
             ArrayList<String> list = new ArrayList<String>();
             for (Object value : items.values()) {
-                //this.items.add(value.getString());
-                list.add(String.valueOf(value));
+                //this.items.add(value.getValue());
+                list.add(value.toString());
             }
             this.items = list;
         }
