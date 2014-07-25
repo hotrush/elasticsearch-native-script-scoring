@@ -21,11 +21,8 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
     public ExecutableScript newScript(@Nullable Map<String, Object> params) {
         String fieldName = params == null ? null : XContentMapValues.nodeStringValue(params.get("field"), null);
         String type = params == null ? null : XContentMapValues.nodeStringValue(params.get("type"), null);
-        if (fieldName == null) {
+        if (fieldName == null || type == null) {
             throw new ScriptException("Missing the field parameter");
-        }
-        if (type == null) {
-            type = "matching";
         }
         return new ValueMultipleScript(fieldName, type);
     }
@@ -48,14 +45,14 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    if (type == "matching") {
+                    if (type.equals("matching")) {
                         return (float) 3;
                     } else {
                         return (float) 1;
                     }
                 }
                 if (fieldValue.getValue() == 3) {
-                    if (type == "matching") {
+                    if (type.equals("matching")) {
                         return (float) 5;
                     } else {
                         return (float) 2;
@@ -63,7 +60,7 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 }
 
             }
-            return score();
+            return 0;
         }
     }
 }
