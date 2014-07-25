@@ -42,10 +42,12 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    return (float) score()*1.5f;
+                    //return (float) score()*1.5f;
+                    return (float) score() + 3;
                 }
                 if (fieldValue.getValue() == 3) {
-                    return (float) score()*2.0f;
+                    //return (float) score()*2.0f;
+                    return (float) score() + 5;
                 }
 
             }
