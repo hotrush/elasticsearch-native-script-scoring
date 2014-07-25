@@ -43,11 +43,11 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
 
                 if (fieldValue.getValue() == 2) {
                     //return (float) score()*1.5f;
-                    return (float) score() + 3;
+                    return (float) 3;
                 }
                 if (fieldValue.getValue() == 3) {
                     //return (float) score()*2.0f;
-                    return (float) score() + 5;
+                    return (float) 5;
                 }
 
             }
