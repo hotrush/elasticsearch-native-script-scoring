@@ -19,7 +19,8 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
         int multiple = params == null ? null : XContentMapValues.nodeIntegerValue(params.get("multiple"), 0);
         String field = params == null ? null : XContentMapValues.nodeStringValue(params.get("field"), null);
         String itemsStr = params == null ? null : XContentMapValues.nodeStringValue(params.get("items"), null);
-        ArrayList<String> items = new ArrayList<String>(Arrays.asList(itemsStr.split("||")));
+        //ArrayList<String> items = new ArrayList<String>(Arrays.asList(itemsStr.split("||")));
+        List<String> items = Arrays.asList(itemsStr.split("\\s*||\\s*"));
         if (field == null || items == null) {
             throw new ScriptException("Missing the field parameter");
         }
@@ -31,9 +32,9 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
         private final String field;
         private final int limit;
         private final int multiple;
-        private final ArrayList<String> items;
+        private final List<String> items;
 
-        public IntersectMultipleScript(String field,ArrayList<String> items,int limit, int multiple) {
+        public IntersectMultipleScript(String field,List<String> items,int limit, int multiple) {
             this.field = field;
             this.limit = limit;
             this.multiple = multiple;
@@ -49,7 +50,11 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
                 ArrayList<String> source_items = new ArrayList<String>(source_items_list.size());
                 source_items.addAll(source_items_list);
 
-                source_items.retainAll(items);
+                ArrayList<String> comp_items = new ArrayList<String>(items.size());
+                comp_items.addAll(items);
+
+                //source_items.retainAll(items);
+                source_items.retainAll(comp_items);
                 int intersections_num = source_items.size();
                 if (intersections_num > 0) {
                     if (intersections_num >= limit) {
