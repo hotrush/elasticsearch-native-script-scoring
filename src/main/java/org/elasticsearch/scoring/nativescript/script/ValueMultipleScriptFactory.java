@@ -20,18 +20,24 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
     @Override
     public ExecutableScript newScript(@Nullable Map<String, Object> params) {
         String fieldName = params == null ? null : XContentMapValues.nodeStringValue(params.get("field"), null);
+        String type = params == null ? null : XContentMapValues.nodeStringValue(params.get("type"), null);
         if (fieldName == null) {
             throw new ScriptException("Missing the field parameter");
         }
-        return new ValueMultipleScript(fieldName);
+        if (type == null) {
+            type = "matching";
+        }
+        return new ValueMultipleScript(fieldName, type);
     }
 
     private static class ValueMultipleScript extends AbstractFloatSearchScript {
 
         private final String field;
+        private final String type;
 
-        public ValueMultipleScript(String field) {
+        public ValueMultipleScript(String field, String type) {
             this.field = field;
+            this.type = type;
         }
 
         @Override
@@ -42,12 +48,18 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    //return (float) score()*1.5f;
-                    return (float) 3;
+                    if (type == "matching") {
+                        return (float) 3;
+                    } else {
+                        return (float) 1;
+                    }
                 }
                 if (fieldValue.getValue() == 3) {
-                    //return (float) score()*2.0f;
-                    return (float) 5;
+                    if (type == "matching") {
+                        return (float) 5;
+                    } else {
+                        return (float) 2;
+                    }
                 }
 
             }
@@ -55,50 +67,3 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
         }
     }
 }
-
-//public class ValueMultipleScript extends AbstractSearchScript {
-//
-//    String field;
-//    ArrayList<HashMap<String, Long>> value_multiples;
-//    int fieldValue;
-//
-//    final static public String SCRIPT_NAME = "value_multiple_script_score";
-//
-//    public static class Factory implements NativeScriptFactory {
-//        @Override
-//        public ExecutableScript newScript(@Nullable Map<String, Object> params) {
-//            return new ValueMultipleScript(params);
-//        }
-//    }
-//
-//    private ValueMultipleScript(Map<String, Object> params) {
-//        params.entrySet();
-//        // field name
-//        field = (String) params.get("field");
-//        if (field == null) {
-//            throw new ScriptException("cannot initialize " + SCRIPT_NAME + ": field or value_multiples parameter missing!");
-//        }
-//    }
-//
-////    @Override
-////    public Object run() {
-//    @Override
-//    public float runAsFloat() {
-//
-//        ScriptDocValues source_doc_value = (ScriptDocValues) doc().get(field);
-//        if (source_doc_value != null && !source_doc_value.isEmpty()) {
-//
-//            ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
-//
-//            if (fieldValue.getValue() == 2) {
-//                return (float) score()*1.5;
-//            }
-//            if (fieldValue.getValue() == 3) {
-//                return (float) score()*2;
-//            }
-//
-//        }
-//        return score();
-//    }
-//
-//}
