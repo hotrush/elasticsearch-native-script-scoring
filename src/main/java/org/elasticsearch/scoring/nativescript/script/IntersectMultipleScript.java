@@ -117,13 +117,16 @@ public class IntersectMultipleScript extends AbstractSearchScript {
             int intersections_num = source_items.size();
             if (intersections_num > 0) {
                 if (intersections_num >= limit) {
-                    return (float) score() + limit*multiple;
+                    //return (float) score() + limit*multiple;
+                    return (float) limit*multiple;
                 } else {
-                    return (float) score() + intersections_num*multiple;
+                    //return (float) score() + intersections_num*multiple;
+                    return (float) intersections_num*multiple;
                 }
             }
         }
-        return score();
+        //return score();
+        return 0;
     }
 
 }
