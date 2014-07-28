@@ -20,21 +20,24 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
     @Override
     public ExecutableScript newScript(@Nullable Map<String, Object> params) {
         String fieldName = params == null ? null : XContentMapValues.nodeStringValue(params.get("field"), null);
-        String type = params == null ? null : XContentMapValues.nodeStringValue(params.get("type"), null);
-        if (fieldName == null || type == null) {
+        int multipleRecommend = params == null ? null : XContentMapValues.nodeIntegerValue(params.get("multiple_recommend"), 0);
+        int multipleHighRecommend = params == null ? null : XContentMapValues.nodeIntegerValue(params.get("multiple_high_recommend"), 0);
+        if (fieldName == null) {
             throw new ScriptException("Missing the field parameter");
         }
-        return new ValueMultipleScript(fieldName, type);
+        return new ValueMultipleScript(fieldName, multipleRecommend, multipleHighRecommend);
     }
 
     private static class ValueMultipleScript extends AbstractFloatSearchScript {
 
         private final String field;
-        private final String type;
+        private final int multipleRecommend;
+        private final int multipleHighRecommend;
 
-        public ValueMultipleScript(String field, String type) {
+        public ValueMultipleScript(String field, int multipleRecommend, int multipleHighRecommend) {
             this.field = field;
-            this.type = type;
+            this.multipleRecommend = multipleRecommend;
+            this.multipleHighRecommend = multipleHighRecommend;
         }
 
         @Override
@@ -45,18 +48,10 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    if (type.equals("matching")) {
-                        return (float) 3;
-                    } else {
-                        return (float) 1;
-                    }
+                    return multipleRecommend;
                 }
                 if (fieldValue.getValue() == 3) {
-                    if (type.equals("matching")) {
-                        return (float) 5;
-                    } else {
-                        return (float) 2;
-                    }
+                    return multipleHighRecommend;
                 }
 
             }
