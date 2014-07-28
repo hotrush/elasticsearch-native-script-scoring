@@ -48,10 +48,10 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    return multipleRecommend;
+                    return (float) multipleRecommend;
                 }
                 if (fieldValue.getValue() == 3) {
-                    return multipleHighRecommend;
+                    return (float) multipleHighRecommend;
                 }
 
             }

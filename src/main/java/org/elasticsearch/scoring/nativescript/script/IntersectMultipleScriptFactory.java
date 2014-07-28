@@ -61,7 +61,7 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
                     }
                 }
             }
-            return score();
+            return 0;
         }
     }
 }
