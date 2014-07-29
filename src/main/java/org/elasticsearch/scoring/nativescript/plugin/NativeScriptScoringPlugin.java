@@ -1,6 +1,7 @@
 package org.elasticsearch.scoring.nativescript.plugin;
 
 import org.elasticsearch.scoring.nativescript.script.IntersectMultipleScriptFactory;
+import org.elasticsearch.scoring.nativescript.script.IntersectMultipleIntegerScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueMultipleScriptFactory;
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
@@ -38,6 +39,7 @@ public class NativeScriptScoringPlugin extends AbstractPlugin {
         // Register each script that we defined in this plugin
 //        module.registerScript(IntersectMultipleScript.SCRIPT_NAME, IntersectMultipleScript.Factory.class);
         module.registerScript("multiple_terms_script_score", IntersectMultipleScriptFactory.class);
+        module.registerScript("multiple_terms_integer_script_score", IntersectMultipleIntegerScriptFactory.class);
 //        module.registerScript(ValueMultipleScript.SCRIPT_NAME, ValueMultipleScript.Factory.class);
         module.registerScript("value_multiple_script_score", ValueMultipleScriptFactory.class);
     }
