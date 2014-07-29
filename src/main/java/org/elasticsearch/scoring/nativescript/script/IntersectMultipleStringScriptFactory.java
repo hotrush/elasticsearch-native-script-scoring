@@ -11,7 +11,7 @@ import org.elasticsearch.script.AbstractFloatSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
 
-public class IntersectMultipleScriptFactory implements NativeScriptFactory {
+public class IntersectMultipleStringScriptFactory implements NativeScriptFactory {
 
     @Override
     public ExecutableScript newScript(@Nullable Map<String, Object> params) {
@@ -23,17 +23,17 @@ public class IntersectMultipleScriptFactory implements NativeScriptFactory {
         if (field == null || items == null) {
             throw new ScriptException("Missing the field parameter");
         }
-        return new IntersectMultipleScript(field,items,limit,multiple);
+        return new IntersectMultipleStringScript(field,items,limit,multiple);
     }
 
-    private static class IntersectMultipleScript extends AbstractFloatSearchScript {
+    private static class IntersectMultipleStringScript extends AbstractFloatSearchScript {
 
         private final String field;
         private final int limit;
         private final int multiple;
         private final ArrayList<String> items;
 
-        public IntersectMultipleScript(String field,ArrayList<String> items,int limit, int multiple) {
+        public IntersectMultipleStringScript(String field,ArrayList<String> items,int limit, int multiple) {
             this.field = field;
             this.limit = limit;
             this.multiple = multiple;
