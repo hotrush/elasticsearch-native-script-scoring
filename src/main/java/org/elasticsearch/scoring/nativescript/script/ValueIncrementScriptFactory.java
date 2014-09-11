@@ -41,11 +41,10 @@ public class ValueIncrementScriptFactory implements NativeScriptFactory {
 
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
-                //return fieldValue.getValue();
-                return 100;
+                return (float) fieldValue.getValue();
 
             }
-            return 1000;
+            return 0;
         }
     }
 }
