@@ -37,14 +37,14 @@ public class ValueIncrementScriptFactory implements NativeScriptFactory {
         @Override
         public float runAsFloat() {
             ScriptDocValues source_doc_value = (ScriptDocValues) doc().get(field);
-            if (source_doc_value != null && !source_doc_value.isEmpty()) {
+            //if (source_doc_value != null && !source_doc_value.isEmpty()) {
 
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 return fieldValue.getValue();
 
-            }
-            return 0;
+            //}
+            //return 0;
         }
     }
 }
