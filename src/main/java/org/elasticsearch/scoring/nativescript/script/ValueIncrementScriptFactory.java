@@ -45,7 +45,7 @@ public class ValueIncrementScriptFactory implements NativeScriptFactory {
                 return 100;
 
             }
-            return 0;
+            return 1000;
         }
     }
 }
