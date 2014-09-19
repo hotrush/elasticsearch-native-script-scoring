@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.elasticsearch</groupId>
     <artifactId>elasticsearch-native-script-scoring</artifactId>
-    <version>1.2.2</version>
+    <version>1.3.0</version>
 
     <!-- ============================================================= -->
     <!-- The Elasticsearch version that the project will be built with -->

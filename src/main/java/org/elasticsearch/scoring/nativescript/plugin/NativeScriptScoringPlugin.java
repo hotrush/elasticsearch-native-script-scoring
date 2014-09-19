@@ -3,6 +3,7 @@ package org.elasticsearch.scoring.nativescript.plugin;
 import org.elasticsearch.scoring.nativescript.script.IntersectMultipleStringScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.IntersectMultipleIntegerScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueMultipleScriptFactory;
+import org.elasticsearch.scoring.nativescript.script.DoubleValueMultipleScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueIncrementScriptFactory;
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
@@ -43,6 +44,7 @@ public class NativeScriptScoringPlugin extends AbstractPlugin {
         module.registerScript("multiple_terms_integer_script_score", IntersectMultipleIntegerScriptFactory.class);
 //        module.registerScript(ValueMultipleScript.SCRIPT_NAME, ValueMultipleScript.Factory.class);
         module.registerScript("value_multiple_script_score", ValueMultipleScriptFactory.class);
+        module.registerScript("double_value_multiple_script_score", DoubleValueMultipleScriptFactory.class);
         module.registerScript("value_increment_script_score", ValueIncrementScriptFactory.class);
     }
 }
