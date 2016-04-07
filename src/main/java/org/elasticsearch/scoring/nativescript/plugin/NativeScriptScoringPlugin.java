@@ -6,6 +6,7 @@ import org.elasticsearch.scoring.nativescript.script.ValueMultipleScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.DoubleValueMultipleScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueIncrementScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueInRangeScriptFactory;
+import org.elasticsearch.scoring.nativescript.script.RangeHasValueScriptFactory;
 import org.elasticsearch.plugins.AbstractPlugin;
 import org.elasticsearch.script.ScriptModule;
 
@@ -48,5 +49,6 @@ public class NativeScriptScoringPlugin extends AbstractPlugin {
         module.registerScript("double_value_multiple_script_score", DoubleValueMultipleScriptFactory.class);
         module.registerScript("value_increment_script_score", ValueIncrementScriptFactory.class);
         module.registerScript("value_in_range_script_score", ValueInRangeScriptFactory.class);
+        module.registerScript("range_has_value_script_score", RangeHasValueScriptFactory.class);
     }
 }
