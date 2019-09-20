@@ -26,6 +26,11 @@ public class ValueIncrementScriptFactory implements NativeScriptFactory {
         return new ValueIncrementScript(fieldName);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class ValueIncrementScript extends AbstractFloatSearchScript {
 
         private final String field;

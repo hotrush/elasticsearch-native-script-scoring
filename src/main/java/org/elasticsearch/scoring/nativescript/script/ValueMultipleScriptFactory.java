@@ -28,6 +28,11 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
         return new ValueMultipleScript(fieldName, multipleRecommend, multipleHighRecommend);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class ValueMultipleScript extends AbstractFloatSearchScript {
 
         private final String field;

@@ -30,6 +30,11 @@ public class IntersectMultipleIntegerScriptFactory implements NativeScriptFactor
         return new IntersectMultipleIntegerScript(field,items,limit,multiple);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class IntersectMultipleIntegerScript extends AbstractFloatSearchScript {
 
         private final String field;

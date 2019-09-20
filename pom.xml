@@ -20,6 +20,9 @@
     <version>2.0.0</version>
 
     <properties>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        
         <elasticsearch.version>2.4.6</elasticsearch.version>
 
         <elasticsearch.plugin.classname>org.elasticsearch.scoring.nativescript.plugin.NativeScriptScoringPlugin</elasticsearch.plugin.classname>

@@ -25,6 +25,11 @@ public class DoubleValueMultipleScriptFactory implements NativeScriptFactory {
         return new DoubleValueMultipleScript(multiple,field1,field2,values1,values2);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class DoubleValueMultipleScript extends AbstractFloatSearchScript {
 
         private final int multiple;

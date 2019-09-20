@@ -26,6 +26,11 @@ public class IntersectMultipleStringScriptFactory implements NativeScriptFactory
         return new IntersectMultipleStringScript(field,items,limit,multiple);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class IntersectMultipleStringScript extends AbstractFloatSearchScript {
 
         private final String field;

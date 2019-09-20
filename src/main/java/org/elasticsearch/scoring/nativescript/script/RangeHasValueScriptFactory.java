@@ -23,6 +23,11 @@ public class RangeHasValueScriptFactory implements NativeScriptFactory {
         return new RangeHasValueScript(multiple,range_value1,range_value2,value_field,value_miltiplier);
     }
 
+    @Override
+    public boolean needsScores() {
+        return false;
+    }
+
     private static class RangeHasValueScript extends AbstractFloatSearchScript {
 
         private final int multiple;
