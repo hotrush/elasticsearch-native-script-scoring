@@ -7,7 +7,7 @@ import org.elasticsearch.scoring.nativescript.script.DoubleValueMultipleScriptFa
 import org.elasticsearch.scoring.nativescript.script.ValueIncrementScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.ValueInRangeScriptFactory;
 import org.elasticsearch.scoring.nativescript.script.RangeHasValueScriptFactory;
-import org.elasticsearch.plugins.AbstractPlugin;
+import org.elasticsearch.plugins.Plugin;
 import org.elasticsearch.script.ScriptModule;
 
 /**
@@ -15,7 +15,7 @@ import org.elasticsearch.script.ScriptModule;
  * first time. If you change the name of this plugin, make sure to update
  * src/main/resources/es-plugin.properties file that points to this class.
  */
-public class NativeScriptScoringPlugin extends AbstractPlugin {
+public class NativeScriptScoringPlugin extends Plugin {
 
     /**
      * The name of the plugin.
