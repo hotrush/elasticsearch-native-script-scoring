@@ -7,9 +7,13 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <files>
         <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>elasticsearch</outputDirectory>
+        </file>
+        <file>
             <!-- <source>${elasticsearch.tools.directory}/plugin-metadata/plugin-descriptor.properties</source> -->
             <source>${basedir}/plugin-descriptor.properties</source>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>elasticsearch</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
