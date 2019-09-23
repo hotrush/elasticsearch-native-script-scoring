@@ -17,18 +17,16 @@
     <artifactId>elasticsearch-native-script-scoring</artifactId>
     <name>elasticsearch-native-script-scoring</name>
     <description>elasticsearch-native-script-scoring</description>
-    <version>2.0.0</version>
+    <version>5.0.0</version>
 
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
-        
-        <elasticsearch.version>2.4.6</elasticsearch.version>
+
+        <elasticsearch.version>5.6.3</elasticsearch.version>
 
         <elasticsearch.plugin.classname>org.elasticsearch.scoring.nativescript.plugin.NativeScriptScoringPlugin</elasticsearch.plugin.classname>
         <elasticsearch.assembly.descriptor>${project.basedir}/src/main/assemblies/plugin.xml</elasticsearch.assembly.descriptor>
-        <elasticsearch.plugin.site>false</elasticsearch.plugin.site>
-        <elasticsearch.plugin.jvm>true</elasticsearch.plugin.jvm>
 
         <tests.rest.suite>example</tests.rest.suite>
         <tests.rest.load_packaged>false</tests.rest.load_packaged>

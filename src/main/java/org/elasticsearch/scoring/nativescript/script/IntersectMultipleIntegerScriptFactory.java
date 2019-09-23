@@ -2,12 +2,12 @@ package org.elasticsearch.scoring.nativescript.script;
 
 import java.util.*;
 
-import org.elasticsearch.script.ScriptException;
+import org.elasticsearch.script.GeneralScriptException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.xcontent.support.XContentMapValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
 //import org.elasticsearch.script.AbstractFloatSearchScript;
-import org.elasticsearch.script.AbstractFloatSearchScript;
+import org.elasticsearch.script.AbstractDoubleSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
 
@@ -25,7 +25,7 @@ public class IntersectMultipleIntegerScriptFactory implements NativeScriptFactor
            items.add(Integer.parseInt(ss[i]));
         }
         if (field == null || items == null) {
-            throw new ScriptException("Missing the field parameter");
+            throw new GeneralScriptException("Missing the field parameter");
         }
         return new IntersectMultipleIntegerScript(field,items,limit,multiple);
     }
@@ -35,7 +35,12 @@ public class IntersectMultipleIntegerScriptFactory implements NativeScriptFactor
         return false;
     }
 
-    private static class IntersectMultipleIntegerScript extends AbstractFloatSearchScript {
+    @Override
+    public String getName() {
+        return "multiple_terms_integer_script_score";
+    }
+
+    private static class IntersectMultipleIntegerScript extends AbstractDoubleSearchScript {
 
         private final String field;
         private final int limit;
@@ -50,7 +55,7 @@ public class IntersectMultipleIntegerScriptFactory implements NativeScriptFactor
         }
 
         @Override
-        public float runAsFloat() {
+        public double runAsDouble() {
             ScriptDocValues source_doc_values = (ScriptDocValues) doc().get(field);
             if (source_doc_values != null && !source_doc_values.isEmpty()) {
 
@@ -64,9 +69,9 @@ public class IntersectMultipleIntegerScriptFactory implements NativeScriptFactor
                 int intersections_num = source_items.size();
                 if (intersections_num > 0) {
                     if (intersections_num >= limit) {
-                        return (float) limit*multiple;
+                        return (double) limit*multiple;
                     } else {
-                        return (float) intersections_num*multiple;
+                        return (double) intersections_num*multiple;
                     }
                 }
             }

@@ -2,12 +2,11 @@ package org.elasticsearch.scoring.nativescript.script;
 
 import java.util.*;
 
-import org.elasticsearch.script.ScriptException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.xcontent.support.XContentMapValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues.Longs;
-import org.elasticsearch.script.AbstractFloatSearchScript;
+import org.elasticsearch.script.AbstractDoubleSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
 
@@ -30,7 +29,12 @@ public class DoubleValueMultipleScriptFactory implements NativeScriptFactory {
         return false;
     }
 
-    private static class DoubleValueMultipleScript extends AbstractFloatSearchScript {
+    @Override
+    public String getName() {
+        return "double_value_multiple_script_score";
+    }
+
+    private static class DoubleValueMultipleScript extends AbstractDoubleSearchScript {
 
         private final int multiple;
         private final String field1;
@@ -47,7 +51,7 @@ public class DoubleValueMultipleScriptFactory implements NativeScriptFactory {
         }
 
         @Override
-        public float runAsFloat() {
+        public double runAsDouble() {
             ScriptDocValues sourceValues1 = (ScriptDocValues) doc().get(field1);
             ScriptDocValues sourceValues2 = (ScriptDocValues) doc().get(field2);
 
@@ -66,7 +70,7 @@ public class DoubleValueMultipleScriptFactory implements NativeScriptFactory {
                 int intersections_num2 = sourceItems2.size();
 
                 if (intersections_num1 > 0 && intersections_num2 > 0) {
-                    return (float) multiple*1;
+                    return (double) multiple*1;
                 }
 
             }

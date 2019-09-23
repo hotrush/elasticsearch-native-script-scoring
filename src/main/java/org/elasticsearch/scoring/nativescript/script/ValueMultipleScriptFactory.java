@@ -6,12 +6,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.elasticsearch.script.ScriptException;
+import org.elasticsearch.script.GeneralScriptException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.xcontent.support.XContentMapValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues.Longs;
-import org.elasticsearch.script.AbstractFloatSearchScript;
+import org.elasticsearch.script.AbstractDoubleSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
 
@@ -23,7 +23,7 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
         int multipleRecommend = params == null ? null : XContentMapValues.nodeIntegerValue(params.get("multiple_recommend"), 0);
         int multipleHighRecommend = params == null ? null : XContentMapValues.nodeIntegerValue(params.get("multiple_high_recommend"), 0);
         if (fieldName == null) {
-            throw new ScriptException("Missing the field parameter");
+            throw new GeneralScriptException("Missing the field parameter");
         }
         return new ValueMultipleScript(fieldName, multipleRecommend, multipleHighRecommend);
     }
@@ -33,7 +33,12 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
         return false;
     }
 
-    private static class ValueMultipleScript extends AbstractFloatSearchScript {
+    @Override
+    public String getName() {
+        return "value_multiple_script_score";
+    }
+
+    private static class ValueMultipleScript extends AbstractDoubleSearchScript {
 
         private final String field;
         private final int multipleRecommend;
@@ -46,17 +51,17 @@ public class ValueMultipleScriptFactory implements NativeScriptFactory {
         }
 
         @Override
-        public float runAsFloat() {
+        public double runAsDouble() {
             ScriptDocValues source_doc_value = (ScriptDocValues) doc().get(field);
             if (source_doc_value != null && !source_doc_value.isEmpty()) {
 
                 ScriptDocValues.Longs fieldValue = (ScriptDocValues.Longs) source_doc_value;
 
                 if (fieldValue.getValue() == 2) {
-                    return (float) multipleRecommend;
+                    return (double) multipleRecommend;
                 }
                 if (fieldValue.getValue() == 3) {
-                    return (float) multipleHighRecommend;
+                    return (double) multipleHighRecommend;
                 }
 
             }

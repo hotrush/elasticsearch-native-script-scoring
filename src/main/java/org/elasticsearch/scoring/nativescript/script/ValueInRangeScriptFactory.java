@@ -2,12 +2,11 @@ package org.elasticsearch.scoring.nativescript.script;
 
 import java.util.*;
 
-import org.elasticsearch.script.ScriptException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.xcontent.support.XContentMapValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues;
 import org.elasticsearch.index.fielddata.ScriptDocValues.Longs;
-import org.elasticsearch.script.AbstractFloatSearchScript;
+import org.elasticsearch.script.AbstractDoubleSearchScript;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.NativeScriptFactory;
 
@@ -27,7 +26,12 @@ public class ValueInRangeScriptFactory implements NativeScriptFactory {
         return false;
     }
 
-    private static class ValueInRangeScript extends AbstractFloatSearchScript {
+    @Override
+    public String getName() {
+        return "value_in_range_script_score";
+    }
+
+    private static class ValueInRangeScript extends AbstractDoubleSearchScript {
 
         private final int multiple;
         private final String range_field1;
@@ -42,7 +46,7 @@ public class ValueInRangeScriptFactory implements NativeScriptFactory {
         }
 
         @Override
-        public float runAsFloat() {
+        public double runAsDouble() {
             ScriptDocValues sourceRangeDoc1 = (ScriptDocValues) doc().get(range_field1);
             ScriptDocValues sourceRangeDoc2 = (ScriptDocValues) doc().get(range_field2);
 
@@ -52,7 +56,7 @@ public class ValueInRangeScriptFactory implements NativeScriptFactory {
                 ScriptDocValues.Longs fieldRangeValue2 = (ScriptDocValues.Longs) sourceRangeDoc2;
 
                 if (value >= fieldRangeValue1.getValue() && value <= fieldRangeValue2.getValue()) {
-                    return (float) multiple*1;
+                    return (double) multiple*1;
                 }
 
             }
